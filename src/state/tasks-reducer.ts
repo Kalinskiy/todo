@@ -44,7 +44,7 @@ const initialState: TasksStateType = {
     ],
 
 }
-export const tasksReducer = (state: TasksStateType = initialState, action: ActionTypes) => {
+export const tasksReducer = (state: TasksStateType = initialState , action: ActionTypes) => {
     switch (action.type) {
         case 'REMOVE-TASK': {
             const stateCopy = {...state} //копия стейта

@@ -123,15 +123,9 @@ export const AppWithReducers = () => {
                                             title={tl.title}
                                             key={tl.id}
                                             id={tl.id}
-                                            tasks={tasksForTodolist}
-                                            removeTask={removeTask}
                                             changeFilter={changeFilter}
-                                            addTask={addTask}
-                                            changeTaskStatus={changeTaskStatus}
                                             filter={tl.filter}
-                                            changeTaskTitle={changeTaskTitle}
                                             removeTodolist={removeTodolist}
-                                            changeTodolistTitle={changeTaskTitle}
                                             onChangeTodolistTitle={onChangeTodolistTitle}
 
                                         />
@@ -148,4 +142,4 @@ export const AppWithReducers = () => {
 
 }
 
-  
+
