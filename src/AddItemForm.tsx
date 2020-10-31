@@ -6,7 +6,8 @@ import {AddBox} from "@material-ui/icons";
 export type AddItemFormType = {
     addItem: (title: string) => void
 }
-export const AddItemForm = (props: AddItemFormType) => {
+export const AddItemForm = React.memo((props: AddItemFormType) => {
+    console.log('AddItemForm called')
     let [error, setError] = useState<string | null>(null)
     let [title, setTitle] = useState('')
 
@@ -23,7 +24,9 @@ export const AddItemForm = (props: AddItemFormType) => {
     }
 
     const onKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        setError(null)
+        if (error !== null) {
+            setError(null)
+        }
         if (e.charCode === 13) {
             addItem()
         }
@@ -48,4 +51,4 @@ export const AddItemForm = (props: AddItemFormType) => {
 
     </div>
 
-}
+})
