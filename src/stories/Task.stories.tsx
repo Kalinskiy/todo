@@ -3,6 +3,7 @@ import {action} from '@storybook/addon-actions'
 import {Task} from "../Task";
 import {Provider} from "react-redux";
 import {store} from "../state/store";
+import {TaskStatuses} from "../api/todolists-api";
 
 export default {
     title: 'Task Stories',
@@ -19,11 +20,11 @@ export const TaskBaseExample = (props: any) => {
             <Provider store={store}>
                 <Task
                     todolistId={'todolistId1'}
-                    task={{id: '1', isDone: true, title: 'CSS'}
+                    task={{id: '1', status: TaskStatuses.Completed, title: 'CSS',totoListId:'todolist1',addedDate:'',order:0,deadline:'',description:'',startDate:'',priority:0}
                     }/>
                 <Task
                     todolistId={'todolistId2'}
-                    task={{id: '2', isDone: false, title: 'JS'}
+                    task={{id: '2', status: TaskStatuses.New, title: 'JS',totoListId:'todolist2',addedDate:'',order:0,deadline:'',description:'',startDate:'',priority:0}
                     }/>
             </Provider>
         </div>

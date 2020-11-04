@@ -1,5 +1,4 @@
 import React, {useCallback} from 'react';
-import {FilterValuesType, TaskType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
 import {Delete} from "@material-ui/icons";
@@ -9,6 +8,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./state/store";
 import {addTaskAC} from "./state/tasks-reducer";
 import {Task} from "./Task";
+import {TaskStatuses, TaskType} from "./api/todolists-api";
+import {FilterValuesType} from "./state/todolists-reducer";
 
 
 type PropsType = {
@@ -45,10 +46,10 @@ export const Todolist = React.memo((props: PropsType) => {
     let tasksForTodolist = allTodolistTasks
 
     if (props.filter === 'active') {
-        tasksForTodolist = allTodolistTasks.filter(t => !t.isDone)
+        tasksForTodolist = allTodolistTasks.filter(t => t.status === TaskStatuses.New)
     }
     if (props.filter === 'completed') {
-        tasksForTodolist = allTodolistTasks.filter(t => t.isDone)
+        tasksForTodolist = allTodolistTasks.filter(t => t.status === TaskStatuses.Completed)
     }
 
     return <div>

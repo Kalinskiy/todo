@@ -4,24 +4,21 @@ import {Todolist} from './Todolist';
 import {AddItemForm} from "./AddItemForm";
 import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@material-ui/core";
 import {Menu} from "@material-ui/icons";
-import {addTodolistAC, changeTodolistAC, changeTodolistFilterAC, removeTodolistAC} from "./state/todolists-reducer";
+import {
+    addTodolistAC,
+    changeTodolistAC,
+    changeTodolistFilterAC,
+    FilterValuesType,
+    removeTodolistAC,
+    TodolistDomainType
+} from "./state/todolists-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./state/store";
+import {TaskStatuses, TaskType} from "./api/todolists-api";
 
 
 //types
-export type FilterValuesType = 'all' | 'active' | 'completed'
 
-export type TaskType = {
-    id: string,
-    title: string,
-    isDone: boolean
-}
-export type TodolistType = {
-    id: string,
-    title: string,
-    filter: FilterValuesType
-}
 export type TasksStateType = {
     [key: string]: Array<TaskType>
 }
@@ -31,7 +28,7 @@ export const AppWithRedux = () => {
     console.log('App called')
     const dispatch = useDispatch()
     const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
-    const todolists = useSelector<AppRootStateType,Array<TodolistType>>(state => state.todolists)
+    const todolists = useSelector<AppRootStateType,Array<TodolistDomainType>>(state => state.todolists)
 
 //Todolists Functions
     const removeTodolist = useCallback((id: string) => {
@@ -74,10 +71,10 @@ export const AppWithRedux = () => {
                                 let tasksForTodolist = allTodolistTasks
 
                                 if (tl.filter === 'active') {
-                                    tasksForTodolist = allTodolistTasks.filter(t => !t.isDone)
+                                    tasksForTodolist = allTodolistTasks.filter(t => t.status ===TaskStatuses.New)
                                 }
                                 if (tl.filter === 'completed') {
-                                    tasksForTodolist = allTodolistTasks.filter(t => t.isDone)
+                                    tasksForTodolist = allTodolistTasks.filter(t => t.status ===TaskStatuses.Completed)
                                 }
 
 
