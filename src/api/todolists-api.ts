@@ -3,7 +3,7 @@ import axios from 'axios'
 const settings = {
     withCredentials: true,
     headers: {
-        'API-KEY': '1cdd9f77-c60e-4af5-b194-659e4ebd5d41'
+        'API-KEY': 'bdb9022f-3466-40e1-957a-ab975d07c6cb'
     }
 }
 const instance = axios.create({
@@ -50,7 +50,7 @@ export type TodolistType = {
     addedDate: string
     order: number
 }
-type ResponseType<D = {}> = {
+export type ResponseType<D = {}> = {
     resultCode: number
     messages: Array<string>
     data: D
