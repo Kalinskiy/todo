@@ -9,17 +9,20 @@ import {TaskPriorities, TaskStatuses} from '../../api/todolists-api'
 import {appReducer} from "../../app/app-reducer";
 import {Simulate} from "react-dom/test-utils";
 import error = Simulate.error;
+import {authReducer} from "../../features/TodolistsList/auth-reducer";
 
 const rootReducer = combineReducers({
     tasks: tasksReducer,
     todolists: todolistsReducer,
-    app: appReducer
+    app: appReducer,
+
+
 })
 
 const initialGlobalState: AppRootStateType = {
     todolists: [
-        {id: "todolistId1", title: "What to learn", filter: "all",entityStatus:'idle', addedDate: '', order: 0},
-        {id: "todolistId2", title: "What to buy", filter: "all",entityStatus:'idle', addedDate: '', order: 0}
+        {id: "todolistId1", title: "What to learn", filter: "all", entityStatus: 'idle', addedDate: '', order: 0},
+        {id: "todolistId2", title: "What to buy", filter: "all", entityStatus: 'idle', addedDate: '', order: 0}
     ],
     tasks: {
         ["todolistId1"]: [
@@ -53,8 +56,13 @@ const initialGlobalState: AppRootStateType = {
     },
     app: {
         status: "idle",
-        error:null
+        error: null,
+        isInitialized:false
+    },
+    auth: {
+        isLoggedIn:false
     }
+
 };
 
 export const storyBookStore = createStore(rootReducer, initialGlobalState);

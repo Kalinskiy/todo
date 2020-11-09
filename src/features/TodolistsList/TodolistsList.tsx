@@ -15,17 +15,26 @@ import {TaskStatuses} from '../../api/todolists-api'
 import {Grid, Paper} from '@material-ui/core'
 import {AddItemForm} from '../../components/AddItemForm/AddItemForm'
 import {Todolist} from './Todolist/Todolist'
+import { Redirect } from 'react-router-dom'
 
+type PropsType = {
+    demo?: boolean
+}
 
-export const TodolistsList: React.FC = () => {
+export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
     const todolists = useSelector<AppRootStateType, Array<TodolistDomainType>>(state => state.todolists)
     const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
+    const isLoggedIn = useSelector<AppRootStateType,boolean>(state => state.auth.isLoggedIn)
+
+
 
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(fetchTodolistsTC())
     }, [])
+
+
 
     const removeTask = useCallback(function (id: string, todolistId: string) {
         dispatch(removeTaskTC(id, todolistId))
@@ -60,6 +69,9 @@ export const TodolistsList: React.FC = () => {
         dispatch(addTodolistTC(title))
     }, [dispatch])
 
+    if(!isLoggedIn || demo){
+        return <Redirect to={'/login'}/>
+    }
 
     return <>
         <Grid container style={{padding: '20px'}}>
