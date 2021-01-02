@@ -1,6 +1,6 @@
 import {todolistsAPI, TodolistType} from '../../api/todolists-api'
 import {Dispatch} from 'redux'
-import {RequestStatusType, setAppStatusAC} from "../../app/app-reducer";
+import {initializedAppTC, RequestStatusType, setAppStatusAC} from "../../app/app-reducer";
 import {handleServerAppError, handleServerNetworkError} from "../../utils/error-utils";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
@@ -43,7 +43,7 @@ const slice = createSlice({
             const index = state.findIndex(tl => tl.id === action.payload.id)
             state[index].filter = action.payload.filter
         }
-    }
+    },
 })
 export const todolistsReducer = slice.reducer
 export const {

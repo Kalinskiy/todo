@@ -1,10 +1,11 @@
 import React, {useCallback, useEffect} from 'react'
 import './App.css'
 import {
-    AppBar, Box,
+    AppBar,
+    Box,
     Button,
     CircularProgress,
-    Container, Grid,
+    Container,
     IconButton,
     LinearProgress,
     Toolbar,
@@ -15,7 +16,7 @@ import {TodolistsList} from '../features/TodolistsList/TodolistsList'
 import {ErrorSnackbar} from '../components/ErrorSnackbar/ErrorSnackbar'
 import {useDispatch, useSelector} from 'react-redux'
 import {AppRootStateType} from './store'
-import {initializedAppTC, RequestStatusType} from './app-reducer'
+import {initializedAppTC} from './app-reducer'
 import {BrowserRouter, Route} from "react-router-dom";
 import {Login} from "../features/Login/Login";
 import {logoutTC} from "../features/TodolistsList/auth-reducer";
@@ -49,7 +50,7 @@ function App({demo = false}: PropsType) {
         </Box>
     }
     return (
-        <BrowserRouter>
+
             <div className="App">
                 <ErrorSnackbar/>
                 <AppBar position="static">
@@ -69,7 +70,7 @@ function App({demo = false}: PropsType) {
                     <Route path={'/login'} render={() => <Login/>}/>
                 </Container>
             </div>
-        </BrowserRouter>
+
     )
 }
 
